@@ -161,6 +161,17 @@ When writing Python in files, all doctests in a file can be run by starting Pyth
 
 `python3 -m doctest <python_source_file>`
 
+加在代码中 ：
+
+```py
+if __name__==__main__
+	import doctest
+    doctest.testmod()
+    doctest.run_docstring_examples(<function's name>,globals(),True)
+```
+
+
+
 **Exhaustive unit testing is a hallmark of good program design.** 
 
 **详尽的测试是好程序的标志**
