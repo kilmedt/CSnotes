@@ -41,7 +41,14 @@ def boar_brawl(player_score, opponent_score):
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
     # END PROBLEM 2
-
+    if opponent_score>9:
+        tens = (opponent_score//10)%10
+    else:
+        tens = 0
+    ones = player_score%10
+    if 3*abs(ones-tens)>1:
+        return 3*abs(ones-tens)
+    return 1
 
 def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
     """Return the points scored on a turn rolling NUM_ROLLS dice when the
@@ -59,6 +66,10 @@ def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
     # END PROBLEM 3
+    if num_rolls == 0:
+        return boar_brawl(player_score,opponent_score)
+    else:
+        return roll_dice(num_rolls,dice)
 
 
 def simple_update(num_rolls, player_score, opponent_score, dice=six_sided):
@@ -80,18 +91,30 @@ def is_prime(n):
         k += 1
     return True
 
-
 def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    if n==1:return 1
+    t,i=2,2
+    while i<=n/2:
+        if n%i==0:
+            t+=1
+        i+=1
+    return t
     # END PROBLEM 4
+   
 
 
 def sus_points(score):
     """Return the new score of a player taking into account the Sus Fuss rule."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    if score == 1:return 1
+    if num_factors(score)==3 or num_factors(score)==4:
+        while not is_prime(score):
+            score+=1
+    return score
     # END PROBLEM 4
 
 
@@ -101,6 +124,8 @@ def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    score = sus_points(simple_update(num_rolls, player_score, opponent_score, dice))
+    return score
     # END PROBLEM 4
 
 
