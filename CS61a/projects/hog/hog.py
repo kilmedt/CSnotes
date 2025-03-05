@@ -163,7 +163,7 @@ def play(strategy0, strategy1, update, score0=0, score1=0, dice=six_sided, goal=
     """
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    
     # END PROBLEM 5
     return score0, score1
 
